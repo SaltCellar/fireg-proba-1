@@ -52,24 +52,11 @@ Route::post('/sites',[\App\Http\Controllers\siteController::class,'postSites']);
 Route::put('/site/{id}',[\App\Http\Controllers\siteController::class,'putSite']);
 Route::delete('/site/{id}',[\App\Http\Controllers\siteController::class,'deleteSite']);
 
-Route::get('/dev/test',function (Request $request) {
-    $validationResult = Validator::make([
-        'name' => 'asd'
-    ],[
-        'name'      => 'required|string',
-        'details'   => 'string',
-    ]);
-
-    return response()->json([
-        'fails' => $validationResult->fails(),
-        'errors' => $validationResult->errors(),
-    ]);
-});
 Route::post('/dev/reset',function (Request $request) {
 
     $control = [
-        'board_posts'   => [],
-        'maintenances'  => [],
+        'board_post'   => [],
+        'maintenance'  => [],
 
         'board' => [
             [ 'name' => 'Első napló', ],
@@ -83,11 +70,16 @@ Route::post('/dev/reset',function (Request $request) {
             [ 'name' => 'Készülék Típus A', ],
             [ 'name' => 'Készülék Típus B', ],
             [ 'name' => 'Készülék Típus C', ],
+            [ 'name' => 'Készülék Típus D', ],
+            [ 'name' => 'Készülék Típus E', ],
+            [ 'name' => 'Készülék Típus F', ],
+            [ 'name' => 'Készülék Típus G', ],
         ],
         'maintenance_type' => [
             [ 'name' => 'Karbantartás Típus A', ],
             [ 'name' => 'Karbantartás Típus B', ],
             [ 'name' => 'Karbantartás Típus C', ],
+            [ 'name' => 'Karbantartás Típus D', ],
         ],
     ];
 

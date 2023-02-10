@@ -52,6 +52,48 @@
             };
         },
         methods: {
+            openAvailableBoard() {
+                axios.get('/api/boards').then(res => {
+                    if (res.status === 200 && res.data.error === false && ( res.data.results ?? false ) && ( res.data.results[0] ?? false )) {
+                        this.openBoard(res.data.results[0].id);
+                    } else {
+                        alert('Board not found! use "POST: /api/dev/reset" for create default setup!');
+                    }
+                });
+            },
+            openBoard(boardId) {
+
+                // Board Exist check!
+                this.$data.boardId = boardId;
+
+                // Load Posts
+                axios.get('/api/board/' + this.$data.boardId).then(res => {
+                    if (res.status === 200 && res.data.error === false) {
+                        this.$data.boardName = res.data.result.name;
+                        this.loadPosts();
+                    } else {
+                        alert('Board not found! We are now looking for available boards!');
+                        this.openAvailableBoard();
+                    }
+                });
+
+                // Available Services (TOP 4)
+                if (this.$data.spottedMaintenanceTypes.length < 1) {
+                    axios.get('/api/maintenance_types?limit=4').then(res => {
+                        if (res.status === 200 && res.data.error === false) {
+                            let maintenanceTypes = [];
+                            Object.values(res.data.results).forEach(maintenanceType => {
+                                maintenanceTypes.push(maintenanceType.id);
+                            });
+                            this.$data.spottedMaintenanceTypes = maintenanceTypes;
+                        }
+                    });
+                }
+
+
+
+            },
+
             createPost() {
                 window.vue.ModalManager.openModal('create-post',this.$props.boardId,(res) => {
                     if (res) {
@@ -107,7 +149,6 @@
                 */
             },
 
-
             openPdf() {
                 window.open('/pdf/board/'+this.$props.boardId, '_blank');
             },
@@ -119,34 +160,11 @@
         },
         mounted() {
 
-            // Board Exist check!
-
-            if (this.$props.boardId !== null) {
-                this.$data.boardId = this.$props.boardId;
-
-                // Load Posts
-                axios.get('/api/board/' + this.$data.boardId).then(res => {
-                    if (res.status === 200 && res.data.error === false) {
-                        this.$data.boardName = res.data.result.name;
-                        this.loadPosts();
-                    }
-                });
-
-                // Available Services (TOP 4)
-                if (this.$data.spottedMaintenanceTypes.length < 1) {
-                    axios.get('/api/maintenance_types?limit=4').then(res => {
-                        if (res.status === 200 && res.data.error === false) {
-                            let maintenanceTypes = [];
-                            Object.values(res.data.results).forEach(maintenanceType => {
-                                maintenanceTypes.push(maintenanceType.id);
-                            });
-                            this.$data.spottedMaintenanceTypes = maintenanceTypes;
-                        }
-                    });
-                }
-
+            if (this.$props.boardId !== null && this.$props.boardId !== "") {
+                this.openBoard(this.$props.boardId);
+            } else {
+                this.openAvailableBoard();
             }
-
 
         },
     }
