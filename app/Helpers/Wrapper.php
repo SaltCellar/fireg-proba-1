@@ -49,41 +49,18 @@ class Wrapper {
 
 
     public static function modelCreate(string $modelClass,array $data = [],array $validator = [], int $multiplier = 1) : array {
+        if ($multiplier < 1) $multiplier = 1;
+
         $validation = $validator ? \Illuminate\Support\Facades\Validator::make($data,$validator)->errors()->toArray() : [];
 
         if ($validation) {
             return [ 'error' => [ 'params' => $validation ] ];
         }
 
-        if ($multiplier > 1) {
-            $created = [];
-            foreach (range(0,$multiplier-1) as $_) {
-                $model = new $modelClass;
-                $model->timestamps = false;
-                foreach (array_keys($validator ? : $data) ? : [] as $key) {
-                    if (isset($data[$key])) {
-                        if ($validator && str_contains($validator[$key],'date')) {
-                            $model->$key = str_replace('.','-',$data[$key]) . " " . "00:00:00";
-                        } else {
-                            $model->$key = $data[$key];
-                        }
-                    }
-                }
-                if ($model->save()) {
-                    $created [] = $model->toArray();
-                }
-            }
-            if (!$created) {
-                return [ 'error' => [ 'model' => 'Failed to save to the database!' ] ];
-            } else {
-                return [ 'error' => false, 'created' => $created ];
-            }
-
-        } else {
-
+        $created = [];
+        foreach (range(0,$multiplier-1) as $_) {
             $model = new $modelClass;
             $model->timestamps = false;
-
             foreach (array_keys($validator ? : $data) ? : [] as $key) {
                 if (isset($data[$key])) {
                     if ($validator && str_contains($validator[$key],'date')) {
@@ -93,14 +70,17 @@ class Wrapper {
                     }
                 }
             }
-
-            if (!$model->save()) {
-                return [ 'error' => [ 'model' => 'Failed to save to the database!' ] ];
-            } else {
-                return [ 'error' => false, 'created' => [ $model->toArray() ] ];
+            if ($model->save()) {
+                $created [] = $model->toArray();
             }
-
         }
+        if (!$created) {
+            return [ 'error' => [ 'model' => 'Failed to save to the database!' ] ];
+        } else {
+            return [ 'error' => false, 'created' => $created ];
+        }
+
+
 
 
     }
