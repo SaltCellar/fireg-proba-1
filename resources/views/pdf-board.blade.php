@@ -47,10 +47,12 @@
                 <td>{{ $post['name'] }}</td>
                 <td>{{ $post['extinguisher_type']['name'] }}</td>
                 <td>{{ $post['fa_date'] }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+
+                @foreach($post['maintenances'] as $maintenance)
+                    <td>{{ $maintenance['date'] ?? '' }}</td>
+                @endforeach
+
+
                 <td>{{ $post['comment'] }}</td>
             </tr>
         @endforeach
