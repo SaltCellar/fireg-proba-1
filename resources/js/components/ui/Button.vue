@@ -12,18 +12,20 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .btn {
         cursor: pointer;
-        padding: 6px 20px;
+        padding: $buttonPadding;
         border: unset;
-        background-color: #1a202c;
-        color: white;
-        font-weight: 600;
-        font-size: 0.8em;
+        background-color: $buttonColor;
+        color: $buttonColorInverse;
+        font-weight: $weightHeavy;
+        font-size: $fontAlter;
     }
     .btn.btn-neg {
-        background-color: unset;
-        color: #1a202c;
+        background-color: $buttonColorInverse;
+        color: $buttonColor;
     }
 </style>

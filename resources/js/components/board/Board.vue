@@ -149,48 +149,52 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .board.loading {
-        opacity: 0.5;
+        opacity: $opacityLoading;
         pointer-events: none;
     }
 
     .board {
         max-width: 1400px;
         width: 100%;
-        margin: 20px auto;
+        margin: $spaceC auto;
+
+        .head {
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            background-color: $tableBackground;
+
+            tr {
+                th {
+                    border: 1px solid $tableBorder;
+                    height: $spaceD;
+                    line-height: $spaceD;
+                }
+                td, th {
+                    align-items: center;
+                    text-align: center;
+                    border: 1px solid $tableBorder;
+                }
+            }
+
+        }
+
+        .footer {
+            padding-top: $spaceC;
+            display: flex;
+            justify-content: flex-end;
+        }
+
     }
 
-    .board > .head {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: flex-start;
-    }
-
-
-    .board > table {
-        width: 100%;
-        background-color: #f5f5f5;
-    }
-
-    .board > table > tr > th {
-        border: 1px solid #d5d5d5;
-        height: 40px;
-        line-height: 40px;
-    }
-
-    .board > table > tr > td,
-    .board > table > tr > th {
-        align-items: center;
-        text-align: center;
-        border: 1px solid #d5d5d5;
-    }
-
-    .board > .footer {
-        padding-top: 20px;
-        display: flex;
-        justify-content: flex-end;
-    }
 </style>

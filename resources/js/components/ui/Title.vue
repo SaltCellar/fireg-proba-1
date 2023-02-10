@@ -13,16 +13,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .title {
         width: 100%;
+
+        p {
+            font-size: $fontHead;
+            border-bottom: 2px solid $buttonColor;
+            padding-right: $spaceC;
+            padding-bottom: $spaceA;
+            font-weight: $weightHeavy;
+            display: inline-block;
+        }
     }
-    .title > p {
-        font-size: 1.3em;
-        border-bottom: 2px solid #1a202c;
-        padding-right: 20px;
-        padding-bottom: 2px;
-        font-weight: 600;
-        display: inline-block;
-    }
+
 </style>

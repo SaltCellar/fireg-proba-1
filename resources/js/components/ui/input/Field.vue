@@ -26,13 +26,17 @@ export default {
 }
 </script>
 
-<style scoped>
-    .inp > input {
-        height: 27px;
-        width: 100%;
-        border: unset;
-        outline: 1px solid #1a202c;
-        outline-offset: -1px;
-        padding: 2px 6px;
+<style lang="scss">
+    @import "resources/sass/define";
+
+    .inp {
+        input {
+            height: $inputHeight;
+            width: 100%;
+            border: unset;
+            outline: 1px solid $buttonColor;
+            outline-offset: -1px;
+            padding: $inputPadding;
+        }
     }
 </style>

@@ -29,55 +29,70 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .modal-backdrop {
         position: fixed;
         width: 100%; height: 100vh;
         top: 0; left: 0;
-        background-color: #1a202c20;
+        background-color: $backdrop;
         backdrop-filter: blur(1px);
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-    .modal-backdrop > .modal p {
-        margin: 0;
-    }
-    .modal-backdrop > .modal {
-        background-color: white;
-        border: 1px solid #1a202c;
-        width: 100%;
-        padding: 10px;
-    }
-    .modal-backdrop > .modal.w4 { max-width: 400px; }
-    .modal-backdrop > .modal.w6 { max-width: 600px; }
-    .modal-backdrop > .modal.w8 { max-width: 800px; }
-    .modal-backdrop > .modal.w10 { max-width: 1000px; }
-    .modal-backdrop > .modal.w12 { max-width: 1200px; }
 
-    .modal-backdrop.loading > .modal {
-        pointer-events: none;
-        background-color: red;
+        .modal p {
+            margin: 0;
+        }
+
+        .modal {
+            background-color: white;
+            border: 1px solid $buttonColor;
+            width: 100%;
+            padding: $spaceC;
+
+            .head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: $spaceB;
+
+                .close {
+                    padding: $spaceA;
+                    cursor: pointer;
+                    font-size: $fontHead;
+                }
+
+                .title {
+                    font-weight: $weightHeavy;
+                }
+
+            }
+
+            .actions {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-top: $spaceB;
+            }
+
+        }
+
+        .modal.w4 { max-width: 400px; }
+        .modal.w6 { max-width: 600px; }
+        .modal.w8 { max-width: 800px; }
+        .modal.w10 { max-width: 1000px; }
+        .modal.w12 { max-width: 1200px; }
+
     }
 
-    .modal-backdrop > .modal > .head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 10px;
+    .modal-backdrop.loading {
+        .modal {
+            pointer-events: none;
+            background-color: $loadingBackgroundDev;
+        }
     }
-    .modal-backdrop > .modal > .head > .close {
-        padding: 5px;
-        cursor: pointer;
-        font-size: 1.4em;
-    }
-    .modal-backdrop > .modal > .head > .title {
-        font-weight: 600;
-    }
-    .modal-backdrop > .modal > .actions {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        padding-top: 10px;
-    }
+
+
 </style>

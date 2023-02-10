@@ -59,10 +59,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .post {
-        line-height: 100px;
-    }
-    .post > td.ml {
+        line-height: $spaceG;
     }
 </style>

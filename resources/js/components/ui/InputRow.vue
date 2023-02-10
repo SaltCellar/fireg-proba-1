@@ -26,20 +26,26 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .input-row {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
 
         margin-bottom: 20px;
+
+        .row-label,
+        .row-input {
+            width: 50%;
+        }
+
+        .row-error {
+            width: 100%;
+            color: $errorColor;
+        }
+
     }
-    .input-row > .row-label,
-    .input-row > .row-input {
-        width: 50%;
-    }
-    .input-row > .row-error {
-        width: 100%;
-        color: orangered;
-    }
+
 </style>

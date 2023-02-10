@@ -225,18 +225,24 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss">
+    @import "resources/sass/define";
+
     .form.loading {
-        opacity: 0.5;
+        opacity: $opacityLoading;
         pointer-events: none;
     }
-    .form > .form-inputs {
-        display: flex;
-        flex-direction: column;
-        padding-top: 10px;
+
+    .form {
+        .form-inputs {
+            display: flex;
+            flex-direction: column;
+            padding-top: $spaceB;
+        }
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
     }
-    .form > .form-actions {
-        display: flex;
-        justify-content: flex-end;
-    }
+
 </style>

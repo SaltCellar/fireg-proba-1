@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <Board boardId="1" />
+        <Board boardId="3" />
         <!-- <Demo/> -->
         <ModalManager/>
     </div>
@@ -17,7 +17,3 @@
         components: { ModalManager, Board, Demo },
     }
 </script>
-
-<style scoped>
-
-</style>
