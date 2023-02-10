@@ -45,11 +45,11 @@
                     ],
                     form: {
                         'type': { value: '', error: '', type: { name: 'select', label: 'Karbantartás Típusa', config: { fetch_url: '/api/maintenance_types?limit=100', fetch_attr: 'name' }, }, },
+                        'date': { value: window.getDate(), error: '', type: { name: 'field', label: 'Dátum', config: { type: 'text', }, }, },
                         'comment': { value: '', error: '', type: { name: 'field', label: 'Megjegyzés', config: { type: 'text', }, }, },
                     },
                     extend: {
                         'parent': this.$props.data,
-                        'date': window.getDate(),
                     }
                 };
             },

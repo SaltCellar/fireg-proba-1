@@ -11,7 +11,7 @@ class board_post extends Model {
     public function getLastMaintenances() : array {
         $result = [];
 
-        foreach ( \App\Models\maintenance_type::all() ? : [] as $maintenanceType ) {
+        foreach ( ( \App\Models\maintenance_type::query()->limit(4)->getModels() ? : [] ) as $maintenanceType ) {
             $maintenance = \App\Models\maintenance::query()
                 ->where('parent','=',$this->id)
                 ->where('type','=',$maintenanceType->id)

@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <Board boardId="3" />
+        <Board boardId="1" />
         <!-- <Demo/> -->
         <ModalManager/>
     </div>

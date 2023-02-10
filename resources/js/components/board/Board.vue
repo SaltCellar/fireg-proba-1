@@ -95,6 +95,8 @@
                 }
             },
             updateMaintenance(maintenance) {
+                this.reloadPost(maintenance.parent);
+                /*
                 if (this.$data.posts[maintenance.parent].maintenances[maintenance.type] !== undefined) {
                     this.$data.posts[maintenance.parent].maintenances[maintenance.type] = {
                         id: maintenance.id,
@@ -102,6 +104,7 @@
                         comment: maintenance.comment,
                     };
                 }
+                */
             },
 
 
