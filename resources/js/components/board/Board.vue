@@ -95,7 +95,7 @@
             },
 
             createPost() {
-                window.vue.ModalManager.openModal('create-post',this.$props.boardId,(res) => {
+                window.vue.ModalManager.openModal('create-post',this.$data.boardId,(res) => {
                     if (res) {
                         res.forEach(post => {
                             this.$data.posts[post.id] = post;
@@ -107,7 +107,7 @@
             loadPosts() {
                 this.$data.loading = true;
                 this.$data.postPage += 1;
-                let url = '/api/posts?page='+ this.$data.postPage +'&limit=10&board=' + this.$props.boardId;
+                let url = '/api/posts?page='+ this.$data.postPage +'&limit=10&board=' + this.$data.boardId;
                 axios.get(url).then(res => {
                     if (res.status === 200 && res.data.error === false) {
                         this.$data.postNext = res.data.next;
@@ -150,7 +150,7 @@
             },
 
             openPdf() {
-                window.open('/pdf/board/'+this.$props.boardId, '_blank');
+                window.open('/pdf/board/'+this.$data.boardId, '_blank');
             },
 
         },
