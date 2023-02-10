@@ -1,8 +1,14 @@
 <html>
 <head>
+    <!--
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8">
+    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <style>
+
+        * { font-family: DejaVu Sans, sans-serif; }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -18,7 +24,7 @@
             <th></th>
             <th colspan="3">Készülék</th>
             <th>Gyártás</th>
-            <th colspan="4">Ellenörzések</th>
+            <th colspan="4">Ellenőrzések</th>
             <th>Megjegyzés</th>
         </tr>
         <tr>

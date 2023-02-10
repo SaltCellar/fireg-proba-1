@@ -9,7 +9,7 @@
                 <th></th>
                 <th colspan="4">Készülék</th>
                 <th>Gyártás</th>
-                <th colspan="4">Ellenörzések</th>
+                <th colspan="4">Ellenőrzések</th>
                 <th>Megjegyzés</th>
             </tr>
             <tr>
