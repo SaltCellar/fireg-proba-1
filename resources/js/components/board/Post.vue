@@ -1,6 +1,6 @@
 <template>
-    <tr class="post">
-        <td>{{ this.$props.index }}</td>
+    <tr :class="['post',this.$data.isMaintenanced ? 'maintenanced' : '']">
+        <td class="id">{{ this.$props.index }}</td>
         <td class="ml">
             <Button @click="editPost" text="Szerk." style="margin-right: 5px" />
             <Button @click="addMaintenance" text="Karb." />
@@ -27,6 +27,11 @@
             index: { type: Number, default() { return null; }, },
             smis: { type: Array, default() { return []; }, },
         },
+        data() {
+            return {
+                isMaintenanced: false,
+            };
+        },
         methods: {
             editPost() {
                 window.vue.ModalManager.openModal('update-post',this.$props.post,(res) => {
@@ -50,12 +55,24 @@
                 } else {
                     return null;
                 }
-            }
+            },
+
+            maintenanced() {
+                let isMaintenanced = false;
+                Object.values(this.$props.post.maintenances).forEach(maintenance => {
+                    if (maintenance) { isMaintenanced = true; }
+                });
+                this.$data.isMaintenanced = isMaintenanced;
+            },
 
         },
         mounted() {
-
+            this.maintenanced();
         },
+        updated() {
+            this.maintenanced();
+        },
+
     }
 </script>
 
@@ -64,5 +81,14 @@
 
     .post {
         line-height: $spaceG;
+        .id {
+            background-color: $postMaintenanceColorStatusNo;
+        }
     }
+    .post.maintenanced {
+        .id {
+            background-color: $postMaintenanceColorStatusYes;
+        }
+    }
+
 </style>
